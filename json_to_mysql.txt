@@ -1,0 +1,1 @@
+python json_to_mysql.py --json-dir collected_data/json --user root --password 1234 --database medicine_db

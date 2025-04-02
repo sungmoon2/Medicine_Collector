@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 가상환경
+venv/
+env/
+
+# 데이터 파일
+data/collected_data/
+*.log
+
+# 환경변수
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# 데이터
+collected_data/
