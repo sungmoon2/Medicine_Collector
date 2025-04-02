@@ -25,7 +25,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler("json_to_mysql.log", encoding='utf-8'),
-        logging.StreamHandler()
+        logging.StreamHandler(sys.stdout)  # 콘솔에도 로그 출력
     ]
 )
 logger = logging.getLogger(__name__)
@@ -73,6 +73,7 @@ class MedicineJsonToMySQL:
     def connect(self):
         """MySQL 데이터베이스에 연결"""
         try:
+            logger.info(f"MySQL 데이터베이스 '{self.database}'에 연결 시도 중 (호스트: {self.host}, 포트: {self.port}, 사용자: {self.user})")
             self.conn = pymysql.connect(
                 host=self.host,
                 user=self.user,
@@ -88,6 +89,7 @@ class MedicineJsonToMySQL:
         
         except Exception as e:
             logger.error(f"MySQL 연결 오류: {e}")
+            print(f"MySQL 연결 오류: {e}")  # 콘솔에도 출력
             return False
     
     def disconnect(self):
@@ -108,7 +110,9 @@ class MedicineJsonToMySQL:
             dict: 처리 통계
         """
         if not os.path.exists(json_dir) or not os.path.isdir(json_dir):
-            logger.error(f"유효하지 않은 디렉토리: {json_dir}")
+            error_msg = f"유효하지 않은 디렉토리: {json_dir}"
+            logger.error(error_msg)
+            print(error_msg)  # 콘솔에도 출력
             return self.stats
         
         # JSON 파일 목록 가져오기
@@ -116,10 +120,13 @@ class MedicineJsonToMySQL:
         total_files = len(json_files)
         
         if total_files == 0:
-            logger.warning(f"디렉토리 '{json_dir}'에 JSON 파일이 없습니다.")
+            warning_msg = f"디렉토리 '{json_dir}'에 JSON 파일이 없습니다."
+            logger.warning(warning_msg)
+            print(warning_msg)  # 콘솔에도 출력
             return self.stats
         
         logger.info(f"총 {total_files}개의 JSON 파일을 처리합니다.")
+        print(f"총 {total_files}개의 JSON 파일을 처리합니다.")  # 콘솔에도 출력
         
         # 데이터베이스 연결
         if not self.connect():
@@ -148,7 +155,9 @@ class MedicineJsonToMySQL:
                         batch_count = 0
                 
                 except Exception as e:
-                    logger.error(f"파일 처리 오류 ({json_file}): {e}")
+                    error_msg = f"파일 처리 오류 ({json_file}): {e}"
+                    logger.error(error_msg)
+                    print(error_msg)  # 콘솔에도 출력
                     self.stats['error_count'] += 1
             
             # 남은 배치 처리
@@ -164,9 +173,18 @@ class MedicineJsonToMySQL:
             logger.info(f"성공: {self.stats['success_count']}개")
             logger.info(f"오류: {self.stats['error_count']}개")
             logger.info(f"중복 스킵: {self.stats['skipped_count']}개")
+            
+            # 콘솔에도 출력
+            print("\nJSON 파일 처리 완료")
+            print(f"처리된 파일: {self.stats['total_processed']}개")
+            print(f"성공: {self.stats['success_count']}개")
+            print(f"오류: {self.stats['error_count']}개")
+            print(f"중복 스킵: {self.stats['skipped_count']}개")
         
         except Exception as e:
-            logger.error(f"일괄 처리 중 오류: {e}")
+            error_msg = f"일괄 처리 중 오류: {e}"
+            logger.error(error_msg)
+            print(error_msg)  # 콘솔에도 출력
             self.conn.rollback()
         
         finally:
@@ -209,7 +227,9 @@ class MedicineJsonToMySQL:
                     self.stats['skipped_count'] += 1
             
             except Exception as e:
-                logger.error(f"데이터 처리 오류 ({medicine_data.get('korean_name', '이름 없음')}): {e}")
+                error_msg = f"데이터 처리 오류 ({medicine_data.get('korean_name', '이름 없음')}): {e}"
+                logger.error(error_msg)
+                print(error_msg)  # 콘솔에도 출력
                 self.stats['error_count'] += 1
     
     def _transform_medicine_data(self, medicine_data):
@@ -432,11 +452,12 @@ class MedicineJsonToMySQL:
         
         except Exception as e:
             logger.error(f"medicine_info 테이블 삽입 오류: {e}")
+            print(f"medicine_info 테이블 삽입 오류: {e}")  # 콘솔에도 출력
             return False
     
     def _insert_division_info(self, medicine_id, division_info):
         """
-        medicine_division 테이블에 데이터 삽입
+        medicine_division 테이블에 데이터 삽입 (개선된 버전)
         
         Args:
             medicine_id: 의약품 ID
@@ -448,26 +469,33 @@ class MedicineJsonToMySQL:
                 return
             
             description = division_info.get('division_description', '')
+            division_type = division_info.get('division_type', '')
+            
             if not description:
                 return
             
             # 중복 확인
             self.cursor.execute(
-                "SELECT id FROM medicine_division WHERE medicine_id = %s AND division_description = %s",
-                (medicine_id, description)
+                "SELECT id FROM medicine_division WHERE medicine_id = %s",
+                (medicine_id,)
             )
             
             if self.cursor.fetchone():
-                return
-            
-            # 데이터 삽입
-            self.cursor.execute(
-                "INSERT INTO medicine_division (medicine_id, division_description) VALUES (%s, %s)",
-                (medicine_id, description)
-            )
+                # 이미 존재하는 경우 업데이트
+                self.cursor.execute(
+                    "UPDATE medicine_division SET division_description = %s, division_type = %s WHERE medicine_id = %s",
+                    (description, division_type, medicine_id)
+                )
+            else:
+                # 새로 삽입
+                self.cursor.execute(
+                    "INSERT INTO medicine_division (medicine_id, division_description, division_type) VALUES (%s, %s, %s)",
+                    (medicine_id, description, division_type)
+                )
         
         except Exception as e:
             logger.warning(f"분할선 정보 삽입 오류: {e}")
+            print(f"분할선 정보 삽입 오류: {e}")
     
     def _insert_image_metadata(self, medicine_id, medicine_data):
         """
@@ -505,6 +533,7 @@ class MedicineJsonToMySQL:
         
         except Exception as e:
             logger.warning(f"이미지 메타데이터 삽입 오류: {e}")
+            print(f"이미지 메타데이터 삽입 오류: {e}")  # 콘솔에도 출력
     
     @staticmethod
     def print_banner():
@@ -516,46 +545,171 @@ class MedicineJsonToMySQL:
         """
         print(banner)
 
+def check_mysql_tables():
+    """
+    필요한 MySQL 테이블이 있는지 확인하고 없으면 생성
+    """
+    try:
+        # MySQL 연결
+        conn = pymysql.connect(
+            host=MYSQL_HOST,
+            user=MYSQL_USER,
+            password=MYSQL_PASSWORD,
+            database=MYSQL_DATABASE,
+            port=MYSQL_PORT,
+            charset='utf8mb4',
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        
+        cursor = conn.cursor()
+        
+        # medicine_info 테이블 확인/생성
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS medicine_info (
+            id VARCHAR(20) PRIMARY KEY,
+            name_kr VARCHAR(200) NOT NULL,
+            name_en VARCHAR(200),
+            company VARCHAR(100),
+            type VARCHAR(50),
+            category VARCHAR(100),
+            insurance_code VARCHAR(30),
+            appearance TEXT,
+            shape VARCHAR(50),
+            color VARCHAR(50),
+            size VARCHAR(50),
+            identification VARCHAR(100),
+            components TEXT,
+            efficacy TEXT,
+            precautions TEXT,
+            dosage TEXT,
+            storage TEXT,
+            expiration TEXT,
+            image_url VARCHAR(500),
+            source_url VARCHAR(500),
+            extracted_time DATETIME,
+            updated_time DATETIME,
+            INDEX (name_kr),
+            INDEX (company),
+            INDEX (category)
+        ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+        """)
+        
+        # medicine_categories 테이블 확인/생성
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS medicine_categories (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            category_code VARCHAR(20) NOT NULL,
+            category_name VARCHAR(100) NOT NULL,
+            UNIQUE KEY (category_code),
+            INDEX (category_name)
+        ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+        """)
+        
+        # medicine_division 테이블 확인/생성
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS medicine_division (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            medicine_id VARCHAR(20) NOT NULL,
+            division_description TEXT,
+            FOREIGN KEY (medicine_id) REFERENCES medicine_info(id) ON DELETE CASCADE,
+            INDEX (medicine_id)
+        ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+        """)
+        
+        # medicine_images 테이블 확인/생성
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS medicine_images (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            medicine_id VARCHAR(20) NOT NULL,
+            image_url VARCHAR(500) NOT NULL,
+            image_width VARCHAR(10),
+            image_height VARCHAR(10),
+            image_alt VARCHAR(200),
+            FOREIGN KEY (medicine_id) REFERENCES medicine_info(id) ON DELETE CASCADE,
+            INDEX (medicine_id)
+        ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+        """)
+        
+        conn.commit()
+        
+        print("MySQL 테이블이 확인/생성되었습니다.")
+        return True
+        
+    except Exception as e:
+        print(f"MySQL 테이블 확인/생성 중 오류: {e}")
+        return False
+        
+    finally:
+        if 'conn' in locals() and conn:
+            conn.close()
+
 def main():
     """
-    메인 함수
+    메인 함수 - IDE에서 Run 버튼으로 직접 실행 가능
     """
-    # 명령행 인자 파싱
-    parser = argparse.ArgumentParser(description='의약품 JSON 파일을 MySQL 데이터베이스로 변환')
-    parser.add_argument('--json-dir', required=True, help='JSON 파일이 있는 디렉토리')
-    parser.add_argument('--host', default='localhost', help='MySQL 호스트 (기본값: localhost)')
-    parser.add_argument('--port', type=int, default=3306, help='MySQL 포트 (기본값: 3306)')
-    parser.add_argument('--user', help='MySQL 사용자')
-    parser.add_argument('--password', help='MySQL 비밀번호')
-    parser.add_argument('--database', help='MySQL 데이터베이스 이름')
-    parser.add_argument('--batch-size', type=int, default=100, help='배치 처리 크기 (기본값: 100)')
-    args = parser.parse_args()
-    
     # 배너 출력
     MedicineJsonToMySQL.print_banner()
     
-    # 환경 변수 로드 (MySQL 설정을 .env 파일에서 가져올 수 있음)
+    # .env 파일에서 환경 변수 로드
     load_dotenv()
     
-    # 연결 정보 설정
-    host = args.host or os.environ.get('MYSQL_HOST', 'localhost')
-    port = args.port or int(os.environ.get('MYSQL_PORT', 3306))
-    user = args.user or os.environ.get('MYSQL_USER')
-    password = args.password or os.environ.get('MYSQL_PASSWORD')
-    database = args.database or os.environ.get('MYSQL_DATABASE')
+    print("\n스크립트 시작: 환경 변수를 확인하고 있습니다...")
     
-    # 필수 정보 확인
-    if not all([user, password, database]):
-        print("오류: MySQL 연결 정보가 부족합니다.")
-        print("--user, --password, --database 옵션을 제공하거나")
-        print("환경 변수 MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE를 설정하세요.")
+    # MySQL 연결 정보 설정 (하드코딩)
+    global MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE
+    
+    # 1. 환경 변수에서 값 로드 시도
+    MYSQL_HOST = os.environ.get('MYSQL_HOST', 'localhost')
+    MYSQL_PORT = int(os.environ.get('MYSQL_PORT', 3306))
+    MYSQL_USER = os.environ.get('MYSQL_USER', 'root')
+    MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', '1234')
+    MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE', 'medicine_db')
+    
+    # 2. 하드코딩된 값으로 덮어쓰기 (필요시 수정)
+    MYSQL_HOST = 'localhost'      # MySQL 호스트 주소
+    MYSQL_PORT = 3306             # MySQL 포트
+    MYSQL_USER = 'root'           # MySQL 사용자 이름
+    MYSQL_PASSWORD = '1234'       # MySQL 비밀번호
+    MYSQL_DATABASE = 'medicine_db'  # MySQL 데이터베이스 이름
+    
+    # JSON 디렉토리 설정 (하드코딩)
+    # 현재 작업 디렉토리 기준 상대 경로 또는 절대 경로 사용
+    JSON_DIR = os.path.join(os.getcwd(), 'collected_data', 'json')
+    
+    # 또는 절대 경로 지정 (필요시 수정)
+    # JSON_DIR = r"C:\Users\qkrtj\medicine_collector\collected_data\json"
+    
+    # 배치 크기 설정
+    BATCH_SIZE = 100
+    
+    # 사용자에게 현재 설정 보여주기
+    print(f"MySQL 연결 정보:")
+    print(f"  호스트: {MYSQL_HOST}")
+    print(f"  포트: {MYSQL_PORT}")
+    print(f"  사용자: {MYSQL_USER}")
+    print(f"  데이터베이스: {MYSQL_DATABASE}")
+    print(f"\nJSON 디렉토리: {JSON_DIR}")
+    print(f"배치 크기: {BATCH_SIZE}")
+    
+    # MySQL 테이블 확인/생성
+    print("\nMySQL 테이블을 확인/생성합니다...")
+    if not check_mysql_tables():
+        print("MySQL 테이블 확인/생성에 실패했습니다. 프로그램을 종료합니다.")
         return 1
     
     # 변환기 초기화 및 실행
-    converter = MedicineJsonToMySQL(host, user, password, database, port)
+    converter = MedicineJsonToMySQL(
+        host=MYSQL_HOST,
+        user=MYSQL_USER, 
+        password=MYSQL_PASSWORD, 
+        database=MYSQL_DATABASE, 
+        port=MYSQL_PORT
+    )
+    
+    print("\nJSON 파일 처리를 시작합니다...")
     
     try:
-        stats = converter.process_json_dir(args.json_dir, args.batch_size)
+        stats = converter.process_json_dir(JSON_DIR, BATCH_SIZE)
         
         # 결과 요약
         print("\nJSON → MySQL 변환 완료:")
@@ -564,6 +718,10 @@ def main():
         print(f"오류: {stats['error_count']}개")
         print(f"중복 스킵: {stats['skipped_count']}개")
         
+        # 로그 파일 경로 안내
+        print(f"\n자세한 로그는 {os.path.abspath('json_to_mysql.log')} 파일을 확인하세요.")
+        
+        print("\n완료되었습니다. 아무 키나 눌러 종료하세요...")
         return 0
         
     except KeyboardInterrupt:
@@ -576,4 +734,12 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception as e:
+        print(f"치명적 오류 발생: {e}")
+        logger.critical(f"치명적 오류 발생: {e}", exc_info=True)
+        sys.exit(1)
+    finally:
+        print("\n프로그램을 종료합니다. 엔터 키를 눌러주세요...")
+        input()

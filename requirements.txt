@@ -1,6 +1,41 @@
-requests
-beautifulsoup4
-python-dotenv
-tqdm
-lxml
-html5lib
+# 기본 요구사항
+requests>=2.28.2
+beautifulsoup4>=4.11.2
+tqdm>=4.64.1
+python-dotenv>=1.0.0
+
+# 데이터 처리 및 분석
+pymysql>=1.0.3
+cryptography>=41.0.3  # pymysql 암호화 의존성
+
+# 로깅 및 유틸리티
+logging>=0.4.9.6
+
+# 웹 스크래핑 
+urllib3>=1.26.15
+re>=2.2.1  # 정규표현식
+
+# 날짜 및 시간 처리
+datetime>=5.1
+
+# 파일 시스템 조작
+os-sys>=2.1.4
+glob2>=0.7
+
+# JSON 처리
+json5>=0.9.14
+
+# CSV 처리
+csv>=1.0
+
+# 랜덤 생성
+random2>=1.0.1
+
+# 명령행 인자 파싱
+argparse>=1.4.0
+
+# 시스템 정보 접근
+sys>=3.3
+
+# 터미널 색상 및 진행 상태 표시
+colorama>=0.4.6

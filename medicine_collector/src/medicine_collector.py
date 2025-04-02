@@ -486,7 +486,7 @@ class MedicineCollector:
     
     def _extract_division_info(self, soup):
         """
-        분할선 정보 추출
+        분할선 정보 추출 (td 태그 내용 직접 추출 버전)
         
         Args:
             soup (BeautifulSoup): 파싱된 HTML 객체
@@ -494,23 +494,98 @@ class MedicineCollector:
         Returns:
             dict or None: 분할선 정보 또는 분할선이 없는 경우 None
         """
-        # 1. 텍스트 기반 검색
+        # 1. 분할선 라벨을 가진 th 태그 찾기
+        for th in soup.find_all('th'):
+            th_text = th.text.strip()
+            # 분할선 관련 키워드 확인
+            if '분할선' in th_text:
+                # 같은 행(tr)에 있는 td 태그 찾기
+                parent_tr = th.parent
+                if parent_tr and parent_tr.name == 'tr':
+                    td = parent_tr.find('td')
+                    if td:
+                        td_text = td.text.strip()
+                        
+                        # 원본 텍스트 그대로 사용하면서 분할선 유형도 결정
+                        division_description = td_text  # 원본 텍스트 그대로 사용
+                        
+                        # 참고용 분할선 유형 정보 추가
+                        if '+' in td_text:
+                            division_type = "십자형"
+                        elif '-' in td_text:
+                            division_type = "일자형"
+                        else:
+                            division_type = "기타"
+                        
+                        return {
+                            "division_description": division_description,  # 원본 텍스트 (예: "+, +")
+                            "division_type": division_type  # 분류 (예: "십자형")
+                        }
+        
+        # 2. 텍스트 기반 검색 (기존 코드)
         division_elements = soup.find_all(['span', 'div'], string=re.compile(r'분할선|나누는.*선|절단선'))
         
         if division_elements:
             division_text = [elem.text.strip() for elem in division_elements]
+            description = division_text[0] if division_text else None
+            
+            # 분할선 유형 결정
+            division_type = None
+            if description:
+                if '+' in description:
+                    division_type = "십자형"
+                elif '-' in description:
+                    division_type = "일자형"
+                else:
+                    division_type = "기타"
+            
             return {
-                "division_description": division_text[0] if division_text else None
+                "division_description": description,
+                "division_type": division_type
             }
         
-        # 2. 표에서 분할선 정보 검색 (백업 방법)
+        # 3. 표에서 분할선 정보 검색 (백업 방법)
         for th in soup.find_all(['th', 'dt']):
             if any(keyword in th.text.lower() for keyword in ['분할선', '절단선', '나누는 선']):
                 td = th.find_next(['td', 'dd'])
                 if td:
+                    description = td.text.strip()
+                    
+                    # 분할선 유형 결정
+                    division_type = None
+                    if '+' in description:
+                        division_type = "십자형"
+                    elif '-' in description:
+                        division_type = "일자형"
+                    else:
+                        division_type = "기타"
+                    
                     return {
-                        "division_description": td.text.strip()
+                        "division_description": description,
+                        "division_type": division_type
                     }
+        
+        # 4. 전체 텍스트에서 관련 패턴 찾기
+        full_text = soup.get_text()
+        division_patterns = [
+            r'분할선[^\.\n]*?([+\-][\s,]*[+\-])',
+            r'분할선[^\.\n]*?([+\-])',
+            r'절단선[^\.\n]*?([+\-])'
+        ]
+        
+        for pattern in division_patterns:
+            match = re.search(pattern, full_text)
+            if match:
+                full_match = match.group(0)
+                specific_mark = match.group(1)
+                
+                # 분할선 유형 결정
+                division_type = "십자형" if "+" in specific_mark else "일자형" if "-" in specific_mark else "기타"
+                
+                return {
+                    "division_description": full_match,
+                    "division_type": division_type
+                }
         
         # 분할선 정보가 없는 경우 None 반환
         return None

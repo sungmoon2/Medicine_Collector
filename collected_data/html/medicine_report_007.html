@@ -1,0 +1,2391 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>의약품 데이터 수집 보고서</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .medicine-item { 
+            border: 1px solid #ddd; 
+            margin-bottom: 20px; 
+            padding: 15px; 
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .medicine-item h3 { 
+            margin-top: 0; 
+            color: #3498db; 
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .medicine-info { display: flex; flex-wrap: wrap; }
+        .info-group { margin-right: 20px; margin-bottom: 10px; flex-basis: 30%; }
+        .info-label { font-weight: bold; color: #7f8c8d; }
+        .info-value { margin-left: 5px; }
+        .missing { color: #e74c3c; }
+        .exists { color: #27ae60; }
+        .medicine-separator { 
+            height: 2px; 
+            background-color: #3498db; 
+            margin: 30px 0; 
+        }
+        .timestamp { 
+            color: #7f8c8d; 
+            font-size: 0.8em; 
+            text-align: right; 
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>의약품 데이터 수집 보고서</h1>
+    <div class="timestamp">생성 시간: 2025-04-02 20:42:13</div>
+    <div id="medicine-list">
+
+        <div class="medicine-item">
+            <h3>코푸시럽에스</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2134517</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Cough Syrup -S</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)유한양행</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>코비안에스시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2142266</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Cobian-S Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">삼아제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01410]항히스타민제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">645701161</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>엑스코프디시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M4356595</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">X-cough D Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">코오롱제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02290]기타의 호흡기관용약</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>오멘건조시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2144763</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Omen dry syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">유니메드제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[06180]주로 그람양성, 음성균에 작용하는 것</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">649501811</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">착색, 유색, 검색, 황색, 변색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>코뚜에프시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2132412</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Cottu-F Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">코오롱제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01410]항히스타민제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>헤파토스시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2139257</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Hepos Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">조아제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03910]간장질환용제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">심근경색, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>그린코푸시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2162862</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Green Couph Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)녹십자</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>콜키퍼시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5904597</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Col-keeper Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(유)한풍제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>코푸샷시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3614831</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">COUGHSHOT Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)팜젠사이언스</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>모드콜시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2132172</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Modcol Syr.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)종근당</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>콜드샷시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3614813</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">COLDSHOT Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)팜젠사이언스</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>제로코푸시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2809471</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Zerocough Syr.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">일성아이에스(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">655403441</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 검색, 하부요로폐색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>콜드윈시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5750727</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">COLDWIN SYRUP</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)씨엠지제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>콜드팡시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6550500</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">ColdPang Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">코오롱제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>아미듀오시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6156911</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Amiduo Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">건일제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value"></span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">646803011,646803021</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 하부요로폐색, 검색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>코디프로시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2850044</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Codi Pro Syrup(20mL)</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">영진약품(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">642404021,642404023</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 검색, 하부요로폐색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>투윈에취시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2211476</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">ToWinH Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">경동제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">648103481,648103482</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 검색, 하부요로폐색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>듀얼콜시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5808928</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)라이트팜텍</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>세나쿨시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5877919</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)텔콘알에프제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>코니톱시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M4356141</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Konitop Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">코오롱제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">670301273</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>뮤코코푸시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6118919</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Mucocough Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">한국휴텍스제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">649105061,649105071</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 하부요로폐색, 검색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>뮤코에이시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5963503</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Muco A syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)보령바이오파마</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">670502241,670502251</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 하부요로폐색, 검색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>이지고시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3404094</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Easygo SYR (Anhydrous caffeine, dimenhydrinate, pyridoxine hydrochloride)</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)휴온스</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>록솔씨시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M4395407</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Roxol-C Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">삼아제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">645700301,645700303</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>크렌콜시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5569910</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Clencol Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">신일제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>노보민시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2140062</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Novomin Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">삼익제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>콜민-에이시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2156867</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Colmin-A Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">영진약품(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01410]항히스타민제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">642401362</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>암브론시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3562349</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Ambron Syrup(500mL)</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">조아제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">644600732</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>디노타시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3596570</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Dinota Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">조아제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>크란톨시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5550737</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Clantol Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)테라젠이텍스</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">698500692</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>암스펜시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5550641</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Amspen Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)에이프로젠바이오로직스</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">645202142</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>소보민시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5138934</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Sovomin Syr.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">삼익제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>차배비시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5835554</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)텔콘알에프제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>프리고시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6713708</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Free-go Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">경진제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>마미즈시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3534195</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Mamiz Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)퍼슨</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>나들이시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6726667</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Nadri Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)이든파마</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>멀리가시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6723954</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Kitods Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)넥스팜코리아</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02350]최토제, 진토제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>모드콜노즈시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6156871</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Modcol nose syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)종근당</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01320]이비과용제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>조아로라타딘시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6085485</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Cho-a Loratadine syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">조아제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01410]항히스타민제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>아목사듀오시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2144972</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Amox Duo Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">영일제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[06180]주로 그람양성, 음성균에 작용하는 것</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">649401321</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">착색, 유색, 검색, 황색, 변색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>코푸엔에스시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5962881</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Cough-N S Syr.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)제뉴파마</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>오클란듀오시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3432398</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">OclanDuo Dry Syrup.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)오스코리아제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[06180]주로 그람양성, 음성균에 작용하는 것</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">629701171</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">착색, 유색, 검색, 황색, 변색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>코포나시럽에스</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3340874</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Coughona Syrup S</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">주식회사제뉴원사이언스</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>유크라건조시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2156794</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Yucla Dry Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)유한양행</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[06180]주로 그람양성, 음성균에 작용하는 것</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">642101351</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">착색, 유색, 검색, 황색, 변색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>세브론에이시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5844606</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Sebron A Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)서울제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">652900921,652900924</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 하부요로폐색, 검색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>코디캄에스시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2145844</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Codicam-S Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)휴온스</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">670602041</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 검색, 하부요로폐색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>쿨럭노즈시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6205691</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Cool Luck Nose Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">경방신약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>방콜노즈시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6727398</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Bang Cold Nose Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">경방신약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>쿨럭코프시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6156875</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Cool Luck Cough Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">경방신약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>콜록콜드시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6697760</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Col Lock Cold Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)녹십자</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>콜브론에이시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5961293</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Colbrone A Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">동국제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02220]진해거담제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">653404691,653404701</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">폐색, 하부요로폐색, 검색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>쿨럭콜드시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6156877</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Cool Luck Cold Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">경방신약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>챔프콜드시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6642578</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Champ Clod Syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">동아제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>에프코프시럽</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M6178956</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">ef-cough syrup</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)텔콘알에프제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[01140]해열.진통.소염제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">안색, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>베아제정</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2134432</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Bearse Tab.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)대웅제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02330]건위소화제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">연녹색의 장방형 필름코팅정제이다.</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">연녹색, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">(장축)13.3, (단축)7.4, (두께)5.9</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">BEARSE</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>닥터베아제정</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2155169</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Doctor Bearse Tab.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)대웅제약</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[02330]건위소화제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">주황색의 장방형 필름코팅 정제</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">주황색, 주황, 검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">(장축)14.9, (단축)8.3, (두께)5.8</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">닥터베아제</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>경남비타민씨정</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2123587</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Kyungnam Vitamin C Tab.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">경남제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03140]비타민 C 및 P제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">흰색의 장방형 정제</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">흰색, 의한 색, 하양, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">(장축)20, (단축)8, (두께)5</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">C-I, 분할선</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">분할선</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>유한비타민씨디정</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5848225</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Yuhan Vitamin-CD Tablet</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)유한양행</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03160]혼합비타민제(비타민AD 혼합제제를 제외)</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">흰색의 타원형 필름코팅정</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">흰색, 의한 색, 하양, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">(장축)15.3, (단축)7.3, (두께)5.9</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">YH, C5</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>서흥비타민E400아이유연질캡슐(비타민E)(수출용)(수출...</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2424359</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Suheung Vitamin E 400 I.U. Soft Capsule(for export)(export Name : VitaminE 400IU)</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)서흥</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03150]비타민 E 및 K제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>유한비타민씨정1000mg</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2144397</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Yuhan Vitamin C Tablet 1000mg</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">(주)유한양행</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03140]비타민 C 및 P제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">백색의 장방형 정제</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">백색, 의한 색, 하양, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">(장축)19.2, (단축)9.3, (두께)6</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">1000, Y분할선H</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">분할선</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>대한뉴팜비타민이연질캡슐400아이유(비타민E)(수출용)(...</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2121984</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Tocovita Soft Cap., Daehantovita Soft Cap.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">대한뉴팜(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03150]비타민 E 및 K제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>안국종합비타민골드정</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M3562391</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Ahngook Multi Vitamin Gold Tab.</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">안국약품(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03190]기타의 비타민제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색, 황색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>안국비타민A유캅셀(수출용)</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2122587</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Ahngook Vitamin A U Cap. (for export)</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">안국약품(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03110]비타민 A 및 D제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">황색색, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>대한뉴팜비타민씨주(아스코르브산)</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M4294334</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Vitamin C Injection Daehannewpharm</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">대한뉴팜(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03140]비타민 C 및 P제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">염증후의 색, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>비타민D3비오엔주(콜레칼시페롤)</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2128347</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">광동제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03110]비타민 A 및 D제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>유니온비타민E연질캡슐(수출용)</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2122036</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Union Vitamin E Soft Cap. (for export)</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">한국유니온제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03150]비타민 E 및 K제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>광동비타민A유연질캡슐(수출용)</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2126101</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">광동제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03110]비타민 A 및 D제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">황색색, 검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>비타민케이1주사액(피토나디온주사액)</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M2141865</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">Dai Han Vitamin-K1 Injection(Phytonadione)</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">대한약품공업(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03150]비타민 E 및 K제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">645101681</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">혈색, 검색, 청색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value missing">없음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
+        <div class="medicine-item">
+            <h3>비타민디3본주100,000IU(콜레칼시페롤)</h3>
+            <div class="medicine-info">
+    
+                <div class="info-group">
+                    <div><span class="info-label">ID:</span> <span class="info-value">M5835653</span></div>
+                    <div><span class="info-label">영문명:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">제조사:</span> <span class="info-value">광동제약(주)</span></div>
+                    <div><span class="info-label">분류:</span> <span class="info-value">[03110]비타민 A 및 D제</span></div>
+                    <div><span class="info-label">보험코드:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성상:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">모양:</span> <span class="info-value">원형</span></div>
+                    <div><span class="info-label">색깔:</span> <span class="info-value">검색</span></div>
+                    <div><span class="info-label">크기:</span> <span class="info-value">정보 없음</span></div>
+                    <div><span class="info-label">식별표기:</span> <span class="info-value">정보 없음</span></div>
+    
+                    <div><span class="info-label">분할선:</span> <span class="info-value">정보 없음</span></div>
+                </div>
+    
+                <div class="info-group">
+                    <div><span class="info-label">성분정보:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">효능효과:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">용법용량:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">주의사항:</span> <span class="info-value exists">있음</span></div>
+                    <div><span class="info-label">이미지:</span> <span class="info-value exists">있음</span></div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="medicine-separator"></div>
+    
