@@ -108,10 +108,13 @@ def fetch_medicine_data(item, medicine_data=None, max_retries=3, user_agents=Non
         logger.info("종료 요청으로 데이터 추출을 중단합니다.")
         return None
     
+    # 타이틀 정리 (로그용)
+    title = re.sub(r'<.*?>', '', item.get("title", ""))
+    
     # 기본 메타데이터 구성
     if medicine_data is None:
         medicine_data = {
-            "title": re.sub(r'<.*?>', '', item.get("title", "")),
+            "title": title,
             "link": item.get("link", ""),
             "description": re.sub(r'<.*?>', '', item.get("description", "")),
             "category": item.get("category", ""),
@@ -121,12 +124,12 @@ def fetch_medicine_data(item, medicine_data=None, max_retries=3, user_agents=Non
     # URL 체크
     url = medicine_data["link"]
     if not url or not url.startswith("http"):
-        logger.warning(f"유효하지 않은 URL: {url}")
+        logger.warning(f"[{title}] 유효하지 않은 URL: {url}")
         return None
     
     # URL에서 docId 추출 시도 (캐싱을 위한 고유 ID)
     doc_id = None
-    doc_id_match = safe_regex_search(r'docId=(\d+)', url)
+    doc_id_match = safe_regex_search(r'docId=([^&]+)', url)
     if doc_id_match:
         doc_id = f"M{safe_regex_group(doc_id_match, 1)}"
         # 이미 처리된 ID인지 확인 (중복 처리 방지)
@@ -135,10 +138,17 @@ def fetch_medicine_data(item, medicine_data=None, max_retries=3, user_agents=Non
             try:
                 with open(existing_ids_path, 'r', encoding='utf-8') as f:
                     if f"{doc_id}\n" in f.read():
-                        logger.info(f"이미 처리된 ID: {doc_id} - 건너뜁니다.")
+                        logger.info(f"│  [ID: {doc_id}] 이미 처리된 ID입니다 - 건너뜁니다.")
                         return None
             except Exception as e:
-                logger.warning(f"ID 목록 읽기 오류: {str(e)}")
+                logger.warning(f"│  [ID: {doc_id}] ID 목록 읽기 오류: {str(e)}")
+    
+    # 로그 식별 텍스트 구성
+    log_id = doc_id if doc_id else "Unknown"
+    
+    # 로그 구분 시작
+    logger.info(f"┌─ 의약품 데이터 처리 시작: {title}")
+    logger.info(f"│  [ID: {log_id}] URL: {url}")
     
     # 기본 HTTP 세션 설정
     session = requests.Session()
@@ -176,13 +186,14 @@ def fetch_medicine_data(item, medicine_data=None, max_retries=3, user_agents=Non
             if response.status_code != 200:
                 if response.status_code >= 500:
                     # 서버 오류는 재시도
-                    logger.warning(f"서버 오류 {response.status_code}, 재시도 {retry_count+1}/{max_retries}")
+                    logger.warning(f"│  [ID: {log_id}] 서버 오류 {response.status_code}, 재시도 {retry_count+1}/{max_retries}")
                     retry_count += 1
                     time.sleep(backoff_time)
                     backoff_time *= 2
                     continue
                 
-                logger.warning(f"페이지 가져오기 실패: {url}, 상태 코드: {response.status_code}")
+                logger.warning(f"│  [ID: {log_id}] 페이지 가져오기 실패: 상태 코드 {response.status_code}")
+                logger.info(f"└─ 처리 실패: {title}")
                 return None
             
             # HTML 효율적 파싱 (필요한 부분만 파싱)
@@ -193,21 +204,25 @@ def fetch_medicine_data(item, medicine_data=None, max_retries=3, user_agents=Non
             try:
                 soup = BeautifulSoup(html_text, 'html.parser')
             except Exception as e:
-                logger.warning(f"HTML 파싱 오류: {str(e)} - 재시도 중")
+                logger.warning(f"│  [ID: {log_id}] HTML 파싱 오류: {str(e)} - 재시도 중")
                 retry_count += 1
                 continue
             
             # 종료 요청 확인
             if shutdown_requested:
-                logger.info("종료 요청으로 데이터 추출을 중단합니다.")
+                logger.info("│  종료 요청으로 데이터 추출을 중단합니다.")
+                logger.info(f"└─ 처리 중단: {title}")
                 return None
             
             # 의약품 페이지 확인
             if not is_medicine_page(soup):
-                logger.warning(f"의약품 페이지가 아님: {url}")
+                logger.warning(f"│  [ID: {log_id}] 의약품 페이지가 아님")
+                logger.info(f"└─ 처리 실패: {title}")
                 return None
             
-            # 데이터 추출 (프로세스 통합)
+            # 데이터 추출 프로세스 시작
+            logger.info(f"│  [ID: {log_id}] 데이터 추출 시작")
+            
             # 1. 기본 데이터 추출
             extracted_data = {
                 "url": url,
@@ -217,46 +232,59 @@ def fetch_medicine_data(item, medicine_data=None, max_retries=3, user_agents=Non
             # 2. 기본 타이틀 및 영문명 추출 (안전하게 처리)
             try:
                 extract_basic_info(soup, extracted_data)
+                if "korean_name" in extracted_data and extracted_data["korean_name"]:
+                    logger.info(f"│  [ID: {log_id}] 제품명: {extracted_data['korean_name']}")
             except Exception as e:
-                logger.warning(f"기본 정보 추출 중 오류: {url} - {str(e)}")
+                logger.warning(f"│  [ID: {log_id}] 기본 정보 추출 중 오류: {str(e)}")
             
             # 종료 요청 확인
             if shutdown_requested:
+                logger.info(f"└─ 처리 중단: {title}")
                 return None
             
             # 3. 이미지 추출 (안전하게 처리)
             try:
-                img_data = extract_medicine_image(soup)
+                # 의약품 ID와 이름 전달하여 로깅 개선
+                med_name = extracted_data.get("korean_name", title)
+                img_data = extract_medicine_image(soup, log_id, med_name)
                 if img_data:
                     extracted_data.update(img_data)
             except Exception as e:
-                logger.warning(f"이미지 추출 중 오류: {url} - {str(e)}")
+                logger.warning(f"│  [ID: {log_id}] 이미지 추출 중 오류: {str(e)}")
             
             # 종료 요청 확인
             if shutdown_requested:
+                logger.info(f"└─ 처리 중단: {title}")
                 return None
             
             # 4. 프로필 테이블 추출 (구조화된 데이터) (안전하게 처리)
             profile_data = {}
             try:
                 profile_data = extract_profile_data(soup)
-                extracted_data.update(profile_data)
+                if profile_data:
+                    extracted_data.update(profile_data)
+                    logger.info(f"│  [ID: {log_id}] 프로필 정보 추출됨: {len(profile_data)} 항목")
             except Exception as e:
-                logger.warning(f"프로필 데이터 추출 중 오류: {url} - {str(e)}")
+                logger.warning(f"│  [ID: {log_id}] 프로필 데이터 추출 중 오류: {str(e)}")
             
             # 종료 요청 확인
             if shutdown_requested:
+                logger.info(f"└─ 처리 중단: {title}")
                 return None
             
             # 5. 섹션별 상세 정보 추출 (안전하게 처리)
             try:
                 section_data = extract_detailed_sections(soup)
-                extracted_data.update(section_data)
+                if section_data:
+                    extracted_data.update(section_data)
+                    section_names = ", ".join(list(section_data.keys())[:3])
+                    logger.info(f"│  [ID: {log_id}] 섹션 정보 추출됨: {len(section_data)} 항목 ({section_names} 등)")
             except Exception as e:
-                logger.warning(f"상세 섹션 추출 중 오류: {url} - {str(e)}")
+                logger.warning(f"│  [ID: {log_id}] 상세 섹션 추출 중 오류: {str(e)}")
             
             # 종료 요청 확인
             if shutdown_requested:
+                logger.info(f"└─ 처리 중단: {title}")
                 return None
             
             # 6. 구조화된 데이터에서 빠진 식별 정보만 보완 (안전하게 처리)
@@ -265,38 +293,53 @@ def fetch_medicine_data(item, medicine_data=None, max_retries=3, user_agents=Non
                 identification_data = extract_identification_info_safe(soup, profile_data)
                 if identification_data:
                     extracted_data.update(identification_data)
+                    logger.info(f"│  [ID: {log_id}] 식별 정보 추출됨")
             except Exception as e:
                 # 이미 내부에서 예외 처리하지만 만일의 경우를 위한 추가 처리
-                logger.warning(f"식별 정보 추출 중 오류: {url} - {str(e)}")
+                logger.warning(f"│  [ID: {log_id}] 식별 정보 추출 중 오류: {str(e)}")
             
             # 7. 필드명 정리 (안전하게 처리)
             try:
                 normalize_field_names(extracted_data)
             except Exception as e:
-                logger.warning(f"필드명 정규화 중 오류: {url} - {str(e)}")
+                logger.warning(f"│  [ID: {log_id}] 필드명 정규화 중 오류: {str(e)}")
             
             # 원본 데이터와 병합
             medicine_data.update(extracted_data)
             
             # 디버그 정보: 추출된 필드
-            found_fields = [key for key in medicine_data if key not in ["url", "extracted_time", "collection_time"]]
-            logger.info(f"추출된 필드 ({len(found_fields)}개): {', '.join(found_fields)}")
+            core_fields = [key for key in medicine_data if key not in ["url", "extracted_time", "collection_time"]]
             
+            # 필드 정보 로깅 - 간결하게 표시
+            field_count = len(core_fields)
+            if field_count > 0:
+                visible_fields = core_fields[:5]  # 처음 5개 필드만 표시
+                field_str = ", ".join(visible_fields)
+                if field_count > 5:
+                    field_str += f", ... (외 {field_count-5}개)"
+                logger.info(f"│  [ID: {log_id}] 총 {field_count}개 필드 추출됨: {field_str}")
+            
+            # id 필드 추가
+            if doc_id and "id" not in medicine_data:
+                medicine_data["id"] = doc_id
+            
+            logger.info(f"└─ 처리 완료: {title}")
             return medicine_data
                 
         except Exception as e:
             retry_count += 1
-            logger.warning(f"페이지 처리 중 오류: {url}, 시도 {retry_count}/{max_retries} - {str(e)}")
+            logger.warning(f"│  [ID: {log_id}] 처리 중 오류 (시도 {retry_count}/{max_retries}): {str(e)}")
             time.sleep(backoff_time)
             backoff_time *= 2
             
             # 종료 요청 확인
             if shutdown_requested:
-                logger.info("종료 요청으로 데이터 추출을 중단합니다.")
+                logger.info("│  종료 요청으로 데이터 추출을 중단합니다.")
+                logger.info(f"└─ 처리 중단: {title}")
                 return None
             
             if retry_count >= max_retries:
-                logger.error(f"최대 재시도 횟수 초과: {url}, 오류: {str(e)}")
+                logger.error(f"│  [ID: {log_id}] 최대 재시도 횟수 초과: {str(e)}")
                 # 오류 정보 저장
                 try:
                     error_log_path = os.path.join(
@@ -307,15 +350,20 @@ def fetch_medicine_data(item, medicine_data=None, max_retries=3, user_agents=Non
                     os.makedirs(os.path.dirname(error_log_path), exist_ok=True)
                     
                     with open(error_log_path, 'w', encoding='utf-8') as f:
+                        import json
                         json.dump({
                             "url": url,
+                            "title": title,
+                            "id": log_id,
                             "error": str(e),
                             "timestamp": datetime.now().isoformat()
                         }, f, ensure_ascii=False, indent=2)
                 except Exception as log_error:
-                    logger.warning(f"오류 로그 저장 실패: {str(log_error)}")
+                    logger.warning(f"│  [ID: {log_id}] 오류 로그 저장 실패: {str(log_error)}")
                 
+                logger.info(f"└─ 처리 실패: {title}")
                 return None
     
     # 종료 요청 또는 최대 재시도 횟수 초과
+    logger.info(f"└─ 처리 중단: {title}")
     return None

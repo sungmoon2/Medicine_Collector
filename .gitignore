@@ -20,3 +20,9 @@ data/collected_data/
 
 # 데이터
 collected_data/
+
+# html
+*.html
+
+# csv
+*.csv

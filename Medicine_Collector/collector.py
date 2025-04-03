@@ -14,6 +14,7 @@ import threading
 import concurrent.futures
 from datetime import datetime
 from tqdm import tqdm
+from collections import OrderedDict
 
 from api.naver_api import search_api, filter_medicine_items
 from parser.html_parser import is_medicine_page, fetch_medicine_data
@@ -161,9 +162,111 @@ class MedicineCollector:
         """
         return is_duplicate_medicine(medicine_data, self.output_dir)
 
+    def standardize_medicine_data(self, medicine_data):
+        """
+        의약품 데이터 표준화 - 일관된 구조와 "정보 없음" 기본값
+        ID 필드를 맨 위에 배치하고 필드 순서 일관성 유지
+        
+        Args:
+            medicine_data (dict): 원본 의약품 데이터
+            
+        Returns:
+            OrderedDict: 표준화된 의약품 데이터 (순서 보장)
+        """
+        # 1. 원본 데이터에서 ID 추출 또는 생성
+        medicine_id = medicine_data.get('id', '')
+        if not medicine_id:
+            medicine_id = generate_medicine_id(medicine_data)
+        
+        # 2. 정렬된 필드 순서 정의 (ID가 맨 앞에 오도록)
+        field_order = [
+            # ID는 항상 맨 앞에
+            'id',
+            
+            # 기본 정보
+            'korean_name',
+            'english_name', 
+            'title',
+            'category',
+            'classification',
+            'company', 
+            'insurance_code',
+            
+            # 성분 및 효능
+            'components',
+            'efficacy',
+            'dosage',
+            
+            # 외형 정보
+            'appearance',
+            'shape_type',
+            'shape',
+            'color',
+            'size',
+            'identification',
+            
+            # 보관 및 주의사항
+            'storage_conditions',
+            'expiration',
+            'precautions',
+            
+            # 이미지 정보
+            'image_quality',
+            'image_url',
+            'image_width',
+            'image_height',
+            'original_width',
+            'original_height',
+            'image_alt',
+            
+            # 메타데이터
+            'link',
+            'url',
+            'description',
+            'extracted_time',
+            'collection_time'
+        ]
+        
+        # 3. 표준화된 데이터를 OrderedDict로 생성 (순서 유지)
+        standardized_data = OrderedDict()
+        
+        # 4. ID 먼저 설정
+        standardized_data['id'] = medicine_id
+        
+        # 5. 정의된 순서대로 필드 채우기
+        for field in field_order[1:]:  # ID는 이미 설정했으므로 건너뛰기
+            if field in medicine_data and medicine_data[field]:
+                # 원본 데이터에 값이 있으면 그대로 사용
+                standardized_data[field] = medicine_data[field]
+            else:
+                # 값이 없으면 특별 필드는 빈 문자열, 나머지는 "정보 없음"
+                if field in ['image_url', 'link', 'url', 'extracted_time', 'collection_time', 
+                            'image_width', 'image_height', 'original_width', 'original_height', 
+                            'image_quality', 'image_alt']:
+                    standardized_data[field] = ""
+                else:
+                    standardized_data[field] = "정보 없음"
+        
+        # 6. 원본 데이터에서 추가 필드가 있다면 마지막에 추가 (순서 유지 없이)
+        for key, value in medicine_data.items():
+            if key not in standardized_data:
+                standardized_data[key] = value
+        
+        # 7. 시간 정보 추가 (비어있는 경우)
+        current_time = datetime.now().isoformat()
+        if not standardized_data.get('extracted_time'):
+            standardized_data['extracted_time'] = current_time
+        if not standardized_data.get('collection_time'):
+            standardized_data['collection_time'] = current_time
+        
+        return standardized_data
+
     def save_medicine_data(self, medicine_data):
         """
-        의약품 데이터 저장
+        의약품 데이터 저장 (개선된 버전)
+        - 순서가 보장된 JSON 저장
+        - 누락된 필드 "정보 없음"으로 표시
+        - ID를 파일명 맨 앞에 배치
         
         Args:
             medicine_data (dict): 저장할 의약품 데이터
@@ -171,19 +274,64 @@ class MedicineCollector:
         Returns:
             tuple: (성공 여부, 파일 경로)
         """
-        result, path = save_medicine_data(
-            medicine_data, 
-            self.json_dir, 
-            self.output_dir
-        )
-        
-        if result:
+        try:
+            if not medicine_data:
+                logger.warning("저장할 의약품 데이터가 없습니다.")
+                return False, None
+            
+            # 로깅에 사용할 기본 정보 추출
+            medicine_id = medicine_data.get('id', 'ID 없음')
+            medicine_name = medicine_data.get('korean_name', medicine_data.get('title', '이름 없음'))
+            
+            # 0. 데이터 표준화 (OrderedDict 사용)
+            medicine_data = self.standardize_medicine_data(medicine_data)
+            
+            # 1. 중복 검사
+            if is_duplicate_medicine(medicine_data, self.output_dir):
+                logger.info(f"[ID: {medicine_id}] 중복 의약품 '{medicine_name}' - 건너뜁니다.")
+                return False, None
+            
+            # 2. 고유 ID 확인
+            medicine_id = medicine_data['id']  # 표준화 함수에서 이미 설정됨
+            
+            # 3. JSON 파일로 저장
+            json_filename = f"{medicine_id}_{sanitize_filename(medicine_name)}.json"
+            json_path = os.path.join(self.json_dir, json_filename)
+            
+            # 디렉토리 생성
+            os.makedirs(self.json_dir, exist_ok=True)
+            
+            # OrderedDict를 JSON으로 저장
+            with open(json_path, 'w', encoding='utf-8') as f:
+                json.dump(medicine_data, f, ensure_ascii=False, indent=2)
+            
+            # 필드 정보 요약
+            field_count = len(medicine_data.keys())
+            important_fields = []
+            
+            # 주요 필드 유무 확인
+            if 'components' in medicine_data and medicine_data['components'] and medicine_data['components'] != "정보 없음":
+                important_fields.append("성분")
+            if 'efficacy' in medicine_data and medicine_data['efficacy'] and medicine_data['efficacy'] != "정보 없음":
+                important_fields.append("효능효과")
+            if 'dosage' in medicine_data and medicine_data['dosage'] and medicine_data['dosage'] != "정보 없음":
+                important_fields.append("용법용량")
+            if 'precautions' in medicine_data and medicine_data['precautions'] and medicine_data['precautions'] != "정보 없음":
+                important_fields.append("주의사항")
+            if 'image_url' in medicine_data and medicine_data['image_url']:
+                important_fields.append("이미지")
+            
+            fields_info = ", ".join(important_fields) if important_fields else "기본 정보만"
+            
+            # 저장 성공 로그
+            logger.info(f"[ID: {medicine_id}] '{medicine_name}' 저장 완료 ({field_count}개 필드, {fields_info})")
+            
             # 통계 업데이트
             self.stats['total_saved'] += 1
             self.stats['medicine_items'].append({
-                'id': medicine_data['id'],
+                'id': medicine_id,
                 'name': medicine_data.get('korean_name', ''),
-                'path': path
+                'path': json_path
             })
             
             # HTML 보고서에 데이터 추가
@@ -193,12 +341,36 @@ class MedicineCollector:
             # HTML 파일 아이템 수 제한 체크
             if self.current_html_count >= self.html_item_limit:
                 self._init_new_html_report()
+            
+            return True, json_path
                 
-            logger.info(f"의약품 데이터 저장 완료: {medicine_data.get('korean_name', 'Unknown')} (ID: {medicine_data.get('id', 'No ID')})")
-        else:
+        except Exception as e:
+            # 오류 정보 추출
+            med_id = medicine_data.get('id', 'ID 없음') if medicine_data else 'ID 없음'
+            med_name = medicine_data.get('korean_name', medicine_data.get('title', '이름 없음')) if medicine_data else '이름 없음'
+            
+            # 상세한 오류 로깅
+            logger.error(f"[ID: {med_id}] '{med_name}' 저장 실패: {e}")
+            
+            # 오류 데이터 별도 저장
+            error_log_dir = os.path.join(self.output_dir, "error_logs")
+            os.makedirs(error_log_dir, exist_ok=True)
+            
+            error_log_path = os.path.join(error_log_dir, f"error_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
+            
+            with open(error_log_path, 'w', encoding='utf-8') as f:
+                json.dump({
+                    "error": str(e),
+                    "medicine_id": med_id,
+                    "medicine_name": med_name,
+                    "timestamp": datetime.now().isoformat(),
+                    "medicine_data": dict(medicine_data) if medicine_data else {}
+                }, f, ensure_ascii=False, indent=2)
+            
+            # 실패 통계 업데이트
             self.stats['failed_items'] += 1
             
-        return result, path
+            return False, None
     
     def _init_new_html_report(self):
         """새 HTML 보고서 초기화"""
