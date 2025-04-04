@@ -21,8 +21,12 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 from collector import MedicineCollector
-from utils.safety import setup_signal_handlers, sigint_handler, force_exit_handler, watchdog_thread
-from utils.keyword_manager import generate_medicine_keywords
+from utils.safety import setup_signal_handlers
+from utils.keyword_manager import (
+    generate_medicine_keywords, load_keywords, clean_keyword_files,
+    generate_extensive_initial_keywords, extract_keywords_from_existing_json,
+    ensure_keywords_available
+)
 
 # 전역 종료 플래그
 shutdown_requested = False
