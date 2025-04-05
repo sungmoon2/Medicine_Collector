@@ -388,8 +388,14 @@ class MedicineCollector:
         Returns:
             str: CSV 파일 경로
         """
+        # CSV 디렉토리 경로 구성
+        csv_dir = os.path.join(self.output_dir, "csv")
+        os.makedirs(csv_dir, exist_ok=True)
+        
         if output_path is None:
-            output_path = os.path.join(self.output_dir, f"medicine_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv")
+            # csv 디렉토리 내에 파일 생성
+            output_filename = f"medicine_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+            output_path = os.path.join(csv_dir, output_filename)
             
         return export_to_csv(
             self.stats, 
@@ -397,23 +403,27 @@ class MedicineCollector:
             output_path, 
             batch_size
         )
-        
+
     def load_keywords(self):
         """
-        키워드 파일 로드
+        키워드 파일 로드 - 수정된 디렉토리 구조 적용
         
         Returns:
             list: 키워드 목록
         """
+        # utils.keyword_manager의 load_keywords 사용
+        # 이 함수는 이미 새 디렉토리 구조를 지원하도록 수정됨
         return load_keywords(self.output_dir)
 
     def update_keyword_progress(self, completed_keyword):
         """
-        완료된 키워드 관리
+        완료된 키워드 관리 - 새 디렉토리 구조 적용
         
         Args:
             completed_keyword (str): 완료된 키워드
         """
+        # utils.keyword_manager의 update_keyword_progress 사용
+        # 이 함수는 이미 새 디렉토리 구조를 지원하도록 수정됨
         update_keyword_progress(completed_keyword, self.output_dir)
 
     def save_checkpoint(self, keyword, processed_count=0):
@@ -442,15 +452,18 @@ class MedicineCollector:
 
     def generate_medicine_keywords(self, max_new_keywords=100, similarity_threshold=0.8):
         """
-        수집된 의약품 데이터를 분석하여 추가 키워드 생성
+        수집된 의약품 데이터를 분석하여 추가 키워드 생성 - 개선된 버전
+        JSON 기반 추출 대신 확률 기반 키워드 생성 사용
         
         Args:
             max_new_keywords (int): 최대 생성할 새 키워드 수
-            similarity_threshold (float): 유사도 임계값 (0.0~1.0)
+            similarity_threshold (float): 유사도 임계값 (호환성 유지)
         
         Returns:
             int: 추가된 키워드 수
         """
+        # 개선된 generate_medicine_keywords 함수 사용
+        # 이 함수는 JSON 파일에서 키워드를 추출하지 않고 확률 기반 생성 전략 사용
         return generate_medicine_keywords(
             self.output_dir,
             self.json_dir,

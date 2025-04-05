@@ -357,8 +357,12 @@ def export_to_csv(stats, json_dir, output_path, batch_size=500):
             except Exception as e:
                 logger.warning(f"키 수집 중 오류 (파일: {json_files[i]}): {e}")
         
-        # 출력 폴더 생성
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        # CSV 디렉토리 경로 확인 및 생성
+        csv_dir = os.path.join(os.path.dirname(os.path.dirname(output_path)), "csv")
+        os.makedirs(csv_dir, exist_ok=True)
+        
+        # 출력 경로 수정 - csv 디렉토리에 저장
+        output_path = os.path.join(csv_dir, os.path.basename(output_path))
         
         # MySQL 친화적인 열 순서 설정
         # 중요 필드가 먼저 오도록 정렬
@@ -421,7 +425,7 @@ def export_to_csv(stats, json_dir, output_path, batch_size=500):
         import traceback
         logger.error(traceback.format_exc())
         return None
-
+    
 # 기존 JSON 파일 표준화 실행 함수
 def run_standardization(json_dir):
     """

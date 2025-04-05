@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-네이버 검색 API를 활용한 의약품 정보 수집기
+네이버 검색 API를 활용한 의약품 정보 수집기 - 개선된 키워드 전략 적용
 
 이 스크립트는 네이버 검색 API를 사용하여 의약품 정보를 검색하고,
 검색 결과에서 의약품사전 페이지를 찾아 데이터를 추출합니다.
 추출된 데이터는 JSON 형태로 저장되며, 수집 결과는 HTML 파일로 생성됩니다.
 
 * 자동 키워드 생성 기능 추가 - 모든 키워드 처리 후 새 키워드를 자동으로 생성하고 계속 수집
+* 알파벳/한글 기반 체계적 키워드 생성 전략 추가
 """
 
 import os
@@ -24,8 +25,8 @@ from collector import MedicineCollector
 from utils.safety import setup_signal_handlers
 from utils.keyword_manager import (
     generate_medicine_keywords, load_keywords, clean_keyword_files,
-    generate_extensive_initial_keywords, extract_keywords_from_existing_json,
-    ensure_keywords_available
+    generate_extensive_initial_keywords,
+    ensure_keywords_available, alphabetical_search_strategy
 )
 
 # 전역 종료 플래그
@@ -50,11 +51,53 @@ def print_banner():
     """프로그램 시작 배너 출력"""
     banner = r"""
     ======================================================================
-    네이버 검색 API 기반 의약품 정보 수집기 v1.1
-    - 자동 키워드 생성 기능 추가
+    네이버 검색 API 기반 의약품 정보 수집기 v1.2
+    - 자동 키워드 생성 기능 강화
+    - 알파벳/한글 기반 체계적 키워드 생성 전략 추가
     ======================================================================
     """
     print(banner)
+
+def try_alphabet_strategy(collector, output_dir):
+    """
+    알파벳/한글 기반 검색 전략 시도 - 디렉토리 경로 변경
+    
+    Args:
+        collector: MedicineCollector 인스턴스
+        output_dir: 출력 디렉토리
+        
+    Returns:
+        int: 생성된 키워드 수
+    """
+    logger.info("알파벳/한글 기반 체계적 검색 전략 시도 중...")
+    
+    # 키워드 디렉토리 경로 변경
+    keywords_dir = os.path.join(output_dir, "keywords")
+    os.makedirs(keywords_dir, exist_ok=True)
+    
+    todo_path = os.path.join(keywords_dir, "keywords_todo.txt")
+    
+    # 알파벳/한글 검색 전략으로 키워드 생성
+    alpha_chars = alphabetical_search_strategy(output_dir)
+    
+    if alpha_chars:
+        # 현재 todo 키워드 로드
+        current_todo = []
+        if os.path.exists(todo_path):
+            with open(todo_path, 'r', encoding='utf-8') as f:
+                current_todo = [line.strip() for line in f if line.strip()]
+        
+        # 새 키워드 추가
+        new_chars = [char for char in alpha_chars if char not in current_todo]
+        if new_chars:
+            with open(todo_path, 'a', encoding='utf-8') as f:
+                for char in new_chars:
+                    f.write(f"{char}\n")
+            logger.info(f"알파벳/한글 검색 전략으로 {len(new_chars)}개 키워드 추가됨")
+            return len(new_chars)
+    
+    logger.info("알파벳/한글 검색 전략으로 새 키워드를 생성할 수 없습니다.")
+    return 0
 
 # 메인 함수
 def main():
@@ -83,6 +126,10 @@ def main():
                            help='생성할 최대 새 키워드 수 (기본값: 50)')
         parser.add_argument('--similarity-threshold', type=float, default=0.6,
                            help='키워드 유사도 임계값 (기본값: 0.6)')
+        parser.add_argument('--use-alphabet-strategy', action='store_true', default=True,
+                           help='알파벳/한글 기반 검색 전략 사용 (기본값: True)')
+        parser.add_argument('--clean-keywords', action='store_true', default=False,
+                           help='키워드 파일 정리 후 실행 (중복 제거, 기본값: False)')
         args = parser.parse_args()
         
         # API 인증 정보 확인
@@ -97,6 +144,12 @@ def main():
         
         # 수집기 초기화
         collector = MedicineCollector(client_id, client_secret, args.output_dir)
+        
+        # 키워드 파일 정리 옵션
+        if args.clean_keywords:
+            logger.info("키워드 파일 정리 중...")
+            clean_keyword_files(args.output_dir)
+            logger.info("키워드 파일 정리 완료")
         
         # 자동 수집 처리 루프
         continue_collection = True
@@ -126,6 +179,10 @@ def main():
                     similarity_threshold=args.similarity_threshold
                 )
                 logger.info(f"새 키워드 생성 완료: {new_count}개 추가됨")
+                
+                # 키워드를 생성하지 못했다면 알파벳/한글 검색 전략 시도
+                if new_count == 0 and args.use_alphabet_strategy:
+                    new_count = try_alphabet_strategy(collector, args.output_dir)
                 
                 # 새 키워드 로드
                 keywords = collector.load_keywords()
@@ -181,6 +238,10 @@ def main():
                 )
                 logger.info(f"새 키워드 생성 완료: {new_count}개 추가됨")
                 
+                # 키워드를 생성하지 못했다면 알파벳/한글 검색 전략 시도
+                if new_count == 0 and args.use_alphabet_strategy:
+                    new_count = try_alphabet_strategy(collector, args.output_dir)
+                
                 # 새 키워드가 없으면 종료
                 if new_count == 0:
                     logger.info("추가할 새 키워드가 없습니다. 수집 종료.")
@@ -212,17 +273,20 @@ def main():
             csv_path = collector.export_to_csv()
             if csv_path:
                 logger.info(f"CSV 내보내기 완료: {csv_path}")
+                # 경로 정보 추가 (CSV 디렉토리 위치 안내)
+                logger.info(f"CSV 파일은 {os.path.join(args.output_dir, 'csv')} 디렉토리에 저장되었습니다.")
         except Exception as e:
             logger.error(f"CSV 내보내기 중 오류: {e}")
-        
-        # 결과 요약
+
+        # 결과 요약 출력 부분 (보통 main 함수 마지막 부분)
         print("\n의약품 정보 수집 완료:")
         print(f"총 수집 반복: {iteration}회")
         print(f"총 검색 횟수: {total_processed}회")
         print(f"총 저장된 항목: {total_success}개")
-        
+
         if 'csv_path' in locals():
             print(f"CSV 파일: {csv_path}")
+            print(f"CSV 파일 디렉토리: {os.path.join(args.output_dir, 'csv')}")
         
         # HTML 보고서 경로 안내
         html_files = [f for f in os.listdir(collector.html_dir) if f.endswith('.html')]
