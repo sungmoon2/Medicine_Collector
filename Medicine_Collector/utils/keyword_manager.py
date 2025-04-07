@@ -477,12 +477,12 @@ def ensure_keywords_available(output_dir, json_dir=None):
 
 def generate_medicine_keywords(output_dir, json_dir=None, max_new_keywords=20, similarity_threshold=0.8):
     """
-    더 효율적인 키워드 생성 전략으로 의미 있는 키워드만 생성
+    JSON 파일에서 의약품 관련 키워드를 추출
     
     Args:
         output_dir (str): 출력 디렉토리
-        json_dir (str, optional): 사용하지 않음 (호환성 유지)
-        max_new_keywords (int): 최대 생성할 새 키워드 수 (기본값 축소)
+        json_dir (str, optional): JSON 파일 디렉토리
+        max_new_keywords (int): 최대 생성할 새 키워드 수
         similarity_threshold (float): 사용하지 않음 (호환성 유지)
     
     Returns:
@@ -495,52 +495,194 @@ def generate_medicine_keywords(output_dir, json_dir=None, max_new_keywords=20, s
     todo_path = os.path.join(keywords_dir, "keywords_todo.txt")
     done_path = os.path.join(keywords_dir, "keywords_done.txt")
     
-    logger.info("효율적인 키워드 생성 전략 사용 중...")
+    logger.info("JSON 파일에서 의약품 키워드 추출 중...")
     
-    # 기존 키워드 로드 (todo 및 done 모두)
-    existing_keywords = set()
+    # JSON 파일 디렉토리 확인
+    if not json_dir or not os.path.exists(json_dir):
+        json_dir = os.path.join(output_dir, "json")
+        if not os.path.exists(json_dir):
+            logger.warning(f"JSON 디렉토리를 찾을 수 없습니다: {json_dir}")
+            return 0
     
-    # 이미 처리된 키워드 (done_keywords)
+    # JSON 파일 목록
+    json_files = [f for f in os.listdir(json_dir) if f.endswith('.json')]
+    
+    if not json_files:
+        logger.warning(f"JSON 디렉토리에 파일이 없습니다: {json_dir}")
+        return 0
+    
+    logger.info(f"{len(json_files)}개 JSON 파일에서 키워드 추출 시작")
+    
+    # done 키워드 로드
     done_keywords = set()
     if os.path.exists(done_path):
         with open(done_path, 'r', encoding='utf-8') as f:
             done_keywords = {line.strip() for line in f if line.strip()}
-        existing_keywords.update(done_keywords)
-        logger.info(f"이미 처리된 키워드: {len(done_keywords)}개")
     
-    # 처리 예정 키워드 (todo_keywords)
+    # todo 키워드 로드
     todo_keywords = set()
     if os.path.exists(todo_path):
         with open(todo_path, 'r', encoding='utf-8') as f:
             todo_keywords = {line.strip() for line in f if line.strip()}
-        existing_keywords.update(todo_keywords)
-        logger.info(f"처리 예정 키워드: {len(todo_keywords)}개")
     
-    # 핵심 의약품 키워드만 집중적으로 생성
-    core_medicine_keywords = [
-        # 주요 일반의약품 (인지도 높은 의약품)
-        "타이레놀", "게보린", "판콜", "판피린", "아스피린", "부루펜", 
-        "우루사", "인사돌", "훼스탈", "아로나민", "센트룸", "삐콤씨",
-        "베아제", "까스활명수", "신신파스", "마데카솔", "후시딘",
-        
-        # 주요 제약사 (검색 가능성 높음)
-        "한미약품", "동아제약", "유한양행", "종근당", "녹십자", "일동제약", 
-        "대웅제약", "광동제약", "보령제약", "삼진제약", "제일약품",
-        
-        # 주요 분류 (일반적인 검색어)
-        "고혈압약", "당뇨약", "항생제", "진통제", "해열제", "소화제",
-        "비타민", "감기약", "알레르기약", "수면제", "콜레스테롤약"
-    ]
+    # 기존 키워드
+    existing_keywords = done_keywords.union(todo_keywords)
+    logger.info(f"중복 검사를 위한 기존 키워드: {len(existing_keywords)}개 (done: {len(done_keywords)}, todo: {len(todo_keywords)})")
     
-    # 기존 키워드와 중복되지 않는 키워드만 선택
-    new_keywords = [kw for kw in core_medicine_keywords if kw not in existing_keywords]
+    # 새 키워드 후보
+    new_keyword_candidates = set()
+    
+    # 필드 매핑 (JSON 필드명이 다를 경우를 위한 매핑)
+    field_mapping = {
+        # 원래 JSON 필드명: 표준화된 필드명
+        'classification': 'classification',  # 분류
+        'category': 'category',              # 구분
+        'category_name': 'category', 
+        'company': 'company',                # 업체명
+        'company_name': 'company',
+        'appearance': 'appearance',          # 성상
+        'shape_type': 'shape_type',          # 제형
+        'shape_info': 'shape_type'
+    }
+    
+    # JSON 파일에서 키워드 추출
+    from tqdm import tqdm
+    for json_file in tqdm(json_files[:min(500, len(json_files))], desc="키워드 추출 중"):
+        try:
+            file_path = os.path.join(json_dir, json_file)
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                
+                # 각 필드에서 키워드 추출
+                for orig_field, std_field in field_mapping.items():
+                    if orig_field in data and data[orig_field] and data[orig_field] != "정보 없음":
+                        field_value = data[orig_field]
+                        
+                        # 1. 분류 필드 특별 처리
+                        if std_field == 'classification':
+                            # 분류 코드와 이름 분리 (예: [01140]해열.진통.소염제)
+                            class_matches = re.findall(r'\[([^\]]+)\]([^,\[]+)', field_value)
+                            if class_matches:
+                                for code, name in class_matches:
+                                    # 코드와 이름 각각 추가
+                                    if code.strip() and len(code.strip()) >= 2:
+                                        new_keyword_candidates.add(code.strip())
+                                    if name.strip() and len(name.strip()) >= 2:
+                                        new_keyword_candidates.add(name.strip())
+                            
+                            # 카테고리 계층 분리 (> 또는 . 기준)
+                            classes = re.split(r'[/>.]', field_value)
+                            for cls in classes:
+                                # 괄호 제거 및 공백 제거
+                                cls = re.sub(r'\[[^\]]*\]', '', cls).strip()
+                                if cls and len(cls) >= 2:
+                                    new_keyword_candidates.add(cls)
+                        
+                        # 2. 구분 필드 처리 (일반의약품, 전문의약품 등)
+                        elif std_field == 'category':
+                            # 복합 카테고리 분리
+                            categories = re.split(r'[/,]', field_value)
+                            for cat in categories:
+                                cat = cat.strip()
+                                if cat and len(cat) >= 2:
+                                    new_keyword_candidates.add(cat)
+                        
+                        # 3. 업체명 필드 처리
+                        elif std_field == 'company':
+                            # 회사명에서 괄호 내용 제거 (예: (주)휴온스 -> 휴온스)
+                            company_name = re.sub(r'\([^)]*\)', '', field_value).strip()
+                            
+                            # 회사명이 여러 단어로 구성된 경우 각 부분 추출 (예: 한국얀센제약 -> 한국얀센, 제약)
+                            company_parts = re.findall(r'([가-힣A-Za-z]{2,})', company_name)
+                            
+                            for part in company_parts:
+                                if part and len(part) >= 2:
+                                    # '주식회사', '제약', '약품' 등 일반 단어는 제외
+                                    common_words = ['주식회사', '제약', '약품', '바이오', '팜', '케미칼']
+                                    if part not in common_words:
+                                        new_keyword_candidates.add(part)
+                            
+                            # 전체 회사명도 추가
+                            if company_name and len(company_name) >= 2:
+                                new_keyword_candidates.add(company_name)
+                        
+                        # 4. 성상 필드 처리
+                        elif std_field == 'appearance':
+                            # 색상 추출 (성상에서 색상 정보 추출)
+                            color_patterns = [
+                                r'(흰색|백색|노란색|노랑|황색|주황색|빨간색|적색|분홍색|핑크색|보라색|자주색|파란색|청색|녹색|초록색|갈색|회색|검정색|투명)',
+                                r'([가-힣]+(?:색|빛))'
+                            ]
+                            
+                            for pattern in color_patterns:
+                                colors = re.findall(pattern, field_value)
+                                for color in colors:
+                                    if isinstance(color, str) and color and len(color) >= 2:
+                                        new_keyword_candidates.add(color)
+                                    elif isinstance(color, tuple):
+                                        for c in color:
+                                            if c and len(c) >= 2:
+                                                new_keyword_candidates.add(c)
+                            
+                            # 제형 정보 추출 (성상에서 제형 정보 추출)
+                            shape_patterns = [
+                                r'(정제|캡슐|시럽|액제|주사제|연고|크림|겔|좌제|산제|과립제|트로키|패치|스프레이)',
+                                r'([가-힣]+(?:형|모양))'
+                            ]
+                            
+                            for pattern in shape_patterns:
+                                shapes = re.findall(pattern, field_value)
+                                for shape in shapes:
+                                    if isinstance(shape, str) and shape and len(shape) >= 2:
+                                        new_keyword_candidates.add(shape)
+                                    elif isinstance(shape, tuple):
+                                        for s in shape:
+                                            if s and len(s) >= 2:
+                                                new_keyword_candidates.add(s)
+                        
+                        # 5. 제형 필드 처리
+                        elif std_field == 'shape_type':
+                            # 제형 추출
+                            shape_types = re.split(r'[/,]', field_value)
+                            for shape_type in shape_types:
+                                shape_type = shape_type.strip()
+                                if shape_type and len(shape_type) >= 2:
+                                    new_keyword_candidates.add(shape_type)
+        
+        except Exception as e:
+            logger.warning(f"파일 {json_file} 처리 중 오류: {str(e)}")
+    
+    # 키워드 필터링
+    filtered_keywords = []
+    for keyword in new_keyword_candidates:
+        # 숫자나 단위가 포함된 키워드 제외
+        if re.search(r'\d+\s*(?:mg|ml|g|mcg|μg|%|정|캡슐)', keyword):
+            continue
+            
+        # 너무 짧거나 긴 키워드 제외
+        if len(keyword) < 2 or len(keyword) > 20:
+            continue
+            
+        # 특수문자 포함 키워드 제외 (일부 허용)
+        if re.search(r'[^\w\s가-힣.-]', keyword):
+            continue
+            
+        # 키워드 정규화
+        keyword = normalize_keyword(keyword)
+        if keyword and len(keyword) >= 2:
+            filtered_keywords.append(keyword)
+    
+    # 중복 제거
+    filtered_keywords = list(set(filtered_keywords))
     
     # 최대 키워드 수 제한
-    if len(new_keywords) > max_new_keywords:
-        new_keywords = new_keywords[:max_new_keywords]
+    filtered_keywords = filtered_keywords[:max_new_keywords]
     
-    # 새 키워드가 있으면 파일에 추가
-    if new_keywords:
+    # 기존 키워드와 중복 제외
+    truly_new_keywords = [kw for kw in filtered_keywords if kw not in existing_keywords]
+    
+    # todo 파일에 추가
+    if truly_new_keywords:
         # 현재 todo 키워드 불러오기
         current_todo = []
         if os.path.exists(todo_path):
@@ -548,16 +690,16 @@ def generate_medicine_keywords(output_dir, json_dir=None, max_new_keywords=20, s
                 current_todo = [line.strip() for line in f if line.strip()]
         
         # 새 키워드 추가
-        updated_todo = current_todo + new_keywords
+        updated_todo = current_todo + truly_new_keywords
         
         # 파일에 저장
         with open(todo_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(updated_todo))
         
-        logger.info(f"새 키워드 {len(new_keywords)}개 추가 완료 (총 {len(updated_todo)}개)")
-        return len(new_keywords)
+        logger.info(f"{len(truly_new_keywords)}개 키워드가 JSON 파일에서 추출되어 추가됨 (총 {len(updated_todo)}개)")
+        return len(truly_new_keywords)
     else:
-        logger.info("추가할 새 키워드가 없습니다.")
+        logger.info("JSON 파일에서 추가할 새 키워드가 없습니다.")
         return 0
     
 def check_keyword_status(keyword, output_dir):
